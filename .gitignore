@@ -1,0 +1,7 @@
+__pycache__/
+*.pyc
+quotes.db
+.venv/
+env/
+.idea/
+.vscode/
