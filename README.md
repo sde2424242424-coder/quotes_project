@@ -74,6 +74,7 @@ The system collects quotes from **quotes.toscrape.com**, stores them in a databa
 ---
 
 ## Project Structure
+```
 quotes_project/
 ├── crawler.py # Web scraping
 ├── crud.py # DB logic
@@ -84,6 +85,7 @@ quotes_project/
 ├── schemas.py # API schemas
 ├── quotes.db # SQLite DB
 └── requirements.txt
+```
 
 ---
 
@@ -92,6 +94,7 @@ quotes_project/
 ```bash
 pip install -r requirements.txt
 python -m uvicorn main:app --reload
+```
 
 ---
 
@@ -173,6 +176,7 @@ python -m uvicorn main:app --reload
 
 ## 프로젝트 구조
 
+```
 quotes_project/
 │── crawler.py # 웹 크롤링
 │── crud.py # DB 처리 로직
@@ -183,6 +187,7 @@ quotes_project/
 │── schemas.py # API 스키마
 │── quotes.db # SQLite 데이터베이스
 │── requirements.txt
+```
 
 ---
 
@@ -191,5 +196,6 @@ quotes_project/
 ```bash
 pip install -r requirements.txt
 python -m uvicorn main:app --reload
+```
 
 ---
