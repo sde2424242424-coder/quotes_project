@@ -179,15 +179,15 @@ python -m uvicorn main:app --reload
 
 ```
 quotes_project/
-│── crawler.py # 웹 크롤링
-│── crud.py # DB 처리 로직
-│── database.py # 데이터베이스 연결
-│── gradio_app.py # UI (Gradio)
-│── main.py # FastAPI 실행
-│── models.py # 데이터 모델
-│── schemas.py # API 스키마
-│── quotes.db # SQLite 데이터베이스
-│── requirements.txt
+├── crawler.py # 웹 크롤링
+├── crud.py # DB 처리 로직
+├── database.py # 데이터베이스 연결
+├── gradio_app.py # UI (Gradio)
+├── main.py # FastAPI 실행
+├── models.py # 데이터 모델
+├── schemas.py # API 스키마
+├── quotes.db # SQLite 데이터베이스
+└── requirements.txt
 ```
 
 ---
