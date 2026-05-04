@@ -98,6 +98,7 @@ python -m uvicorn main:app --reload
 
 ---
 
+
 # KOR
 # 격언 관리 및 분석 시스템 (Quotes Management and Analysis System)
 
