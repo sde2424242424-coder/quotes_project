@@ -75,15 +75,15 @@ The system collects quotes from **quotes.toscrape.com**, stores them in a databa
 
 ## Project Structure
 quotes_project/
-│── crawler.py # Web scraping
-│── crud.py # DB logic
-│── database.py # DB connection
-│── gradio_app.py # UI (Gradio)
-│── main.py # FastAPI app
-│── models.py # DB models
-│── schemas.py # API schemas
-│── quotes.db # SQLite DB
-│── requirements.txt
+├── crawler.py # Web scraping
+├── crud.py # DB logic
+├── database.py # DB connection
+├── gradio_app.py # UI (Gradio)
+├── main.py # FastAPI app
+├── models.py # DB models
+├── schemas.py # API schemas
+├── quotes.db # SQLite DB
+└── requirements.txt
 
 ---
 
@@ -93,6 +93,7 @@ quotes_project/
 pip install -r requirements.txt
 python -m uvicorn main:app --reload
 
+---
 
 # KOR
 # 격언 관리 및 분석 시스템 (Quotes Management and Analysis System)
@@ -190,3 +191,5 @@ quotes_project/
 ```bash
 pip install -r requirements.txt
 python -m uvicorn main:app --reload
+
+---
