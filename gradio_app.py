@@ -16,6 +16,10 @@ STOPWORDS = {
     "they", "them", "their", "not", "but", "from", "or", "if", "so"
 }
 
+MAX_LIMIT = 50
+MIN_CARD_LIMIT = 2
+DEFAULT_CARD_LIMIT = 20
+
 
 def get_quotes():
     db = SessionLocal()
@@ -96,7 +100,9 @@ def show_gallery(category, keyword, limit):
             or key in q.category.lower()
         ]
 
-    quotes = quotes[:int(limit)]
+    limit = int(limit)
+    limit = max(MIN_CARD_LIMIT, min(limit, MAX_LIMIT))
+    quotes = quotes[:limit]
 
     if not quotes:
         return """
@@ -230,7 +236,7 @@ def delete_quote(quote_id):
 
 def word_count_plot():
     quotes = get_quotes()
-    fig = plt.figure(figsize=(10, 5))
+    fig = plt.figure(figsize=(12, 7))
 
     if not quotes:
         plt.text(0.5, 0.5, "No data", ha="center", va="center")
@@ -241,7 +247,7 @@ def word_count_plot():
     words = re.findall(r"[a-zA-Z']+", text)
     words = [w for w in words if w not in STOPWORDS and len(w) > 2]
 
-    data = Counter(words).most_common(10)
+    data = Counter(words).most_common(MAX_LIMIT)
 
     if not data:
         plt.text(0.5, 0.5, "No words", ha="center", va="center")
@@ -252,8 +258,8 @@ def word_count_plot():
     values = [x[1] for x in data]
 
     plt.bar(labels, values)
-    plt.title("Top 10 Words")
-    plt.xticks(rotation=35)
+    plt.title(f"Top {MAX_LIMIT} Words")
+    plt.xticks(rotation=75)
     plt.tight_layout()
 
     return fig
@@ -279,20 +285,20 @@ def category_plot():
 
 def author_plot():
     quotes = get_quotes()
-    fig = plt.figure(figsize=(10, 5))
+    fig = plt.figure(figsize=(12, 10))
 
     if not quotes:
         plt.text(0.5, 0.5, "No data", ha="center", va="center")
         plt.axis("off")
         return fig
 
-    data = Counter(q.author for q in quotes).most_common(10)
+    data = Counter(q.author for q in quotes).most_common(MAX_LIMIT)
 
     labels = [x[0] for x in data]
     values = [x[1] for x in data]
 
     plt.barh(labels, values)
-    plt.title("Top Authors")
+    plt.title(f"Top {MAX_LIMIT} Authors")
     plt.tight_layout()
 
     return fig
@@ -339,10 +345,10 @@ def build_gradio():
                         placeholder="Author, category, or quote text"
                     )
                     limit = gr.Slider(
-                        minimum=2,
-                        maximum=10,
-                        value=4,
-                        step=2,
+                        minimum=MIN_CARD_LIMIT,
+                        maximum=MAX_LIMIT,
+                        value=DEFAULT_CARD_LIMIT,
+                        step=1,
                         label="Card Limit"
                     )
 
